@@ -19,8 +19,6 @@ fn main() {
 
     let mut mfrm = tui_frm::MsgFrame {
         frame: tui_frm::Frame {
-            //title: "temp".to_string(),
-            //title_color: "blue".to_string(),
             title: "temp",
             title_color: "blue",
             x: 4,
@@ -29,11 +27,6 @@ fn main() {
             h: 5,
         },
         msg: vec![
-            //"line one".to_string(),
-            //"line two".to_string(),
-            //"line three".to_string(),
-            //"line four".to_string(),
-            //"line five".to_string(),
             "line one",
             "line two",
             "line three",
