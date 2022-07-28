@@ -1,16 +1,18 @@
 use colored::Colorize;
 use crate::tui_gen::cmove;
 
-pub struct Frame {
-    pub title: String,
-    pub title_color: String,
+pub struct Frame<'a> {
+    //pub title: String,
+    //pub title_color: String,
+    pub title: &'a str,
+    pub title_color: &'a str,
     pub x: usize,
     pub y: usize,
     pub w: usize,
     pub h: usize,
 }
 
-impl Frame {
+impl Frame<'_> {
     #[allow(dead_code)]
     pub fn clear(&self) {
         // draw middle
@@ -80,12 +82,13 @@ impl Frame {
     }
 }
 
-pub struct MsgFrame {
-    pub frame: Frame,
-    pub msg: Vec<String>,
+pub struct MsgFrame<'a> {
+    pub frame: Frame<'a>,
+    //pub msg: Vec<String>,
+    pub msg: Vec<&'a str>,
 }
 
-impl MsgFrame {
+impl MsgFrame<'_> {
     pub fn display_msg(&self) {
         for i in 0..self.msg.len() {
             if self.msg.len() > (self.frame.h - 1) {

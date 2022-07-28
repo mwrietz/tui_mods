@@ -19,19 +19,26 @@ fn main() {
 
     let mut mfrm = tui_frm::MsgFrame {
         frame: tui_frm::Frame {
-            title: "temp".to_string(),
-            title_color: "blue".to_string(),
+            //title: "temp".to_string(),
+            //title_color: "blue".to_string(),
+            title: "temp",
+            title_color: "blue",
             x: 4,
             y: 6,
             w: 40,
             h: 5,
         },
         msg: vec![
-            "line one".to_string(),
-            "line two".to_string(),
-            "line three".to_string(),
-            "line four".to_string(),
-            "line five".to_string(),
+            //"line one".to_string(),
+            //"line two".to_string(),
+            //"line three".to_string(),
+            //"line four".to_string(),
+            //"line five".to_string(),
+            "line one",
+            "line two",
+            "line three",
+            "line four",
+            "line five",
         ],
     };
     mfrm.frame.display();
@@ -40,12 +47,12 @@ fn main() {
     mfrm.display_msg();
     tui_gen::pause();
 
-    mfrm.msg.push("line six".to_string());
+    mfrm.msg.push("line six");
     mfrm.frame.clear();
     mfrm.display_msg();
     tui_gen::pause();
 
-    mfrm.msg.push("line seven".to_string());
+    mfrm.msg.push("line seven");
     mfrm.frame.clear();
     mfrm.display_msg();
     tui_gen::pause();
