@@ -16,24 +16,7 @@ pub fn cmove(x: usize, y: usize) {
 #[allow(dead_code)]
 pub fn horiz_line(color: &str) {
     for _i in 0..80 {
-        if color == "blue" {
-            print!("{}", "─".blue().bold());
-        }
-        if color == "green" {
-            print!("{}", "─".green().bold());
-        }
-        if color == "purple" {
-            print!("{}", "─".purple().bold());
-        }
-        if color == "red" {
-            print!("{}", "─".red().bold());
-        }
-        if color == "white" {
-            print!("{}", "─".white().bold());
-        }
-        if color == "yellow" {
-            print!("{}", "─".yellow().bold());
-        }
+        print!("{}", "─".color(color).bold());
     }
     println!("");
 }
@@ -58,24 +41,7 @@ pub fn print_title(title_string: &str, color: &str) {
     println!("");
     for c in title_string.chars() {
         print!("{}", " ");
-        if color == "blue" {
-            print!("{}", c.to_string().blue().bold());
-        }
-        if color == "green" {
-            print!("{}", c.to_string().green().bold());
-        }
-        if color == "purple" {
-            print!("{}", c.to_string().purple().bold());
-        }
-        if color == "red" {
-            print!("{}", c.to_string().red().bold());
-        }
-        if color == "white" {
-            print!("{}", c.to_string().white().bold());
-        }
-        if color == "yellow" {
-            print!("{}", c.to_string().yellow().bold());
-        }
+        print!("{}", c.to_string().color(color).bold());
     }
     println!("");
     horiz_line(color);

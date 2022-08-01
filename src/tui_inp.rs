@@ -13,10 +13,9 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
     let y = (term_height - height)/2;
 
     let frm = Frame {
-        //title: title.to_string(),
-        //title_color: "white".to_string(),
         title: title,
         title_color: "white",
+        frame_color: "white",
         x: x,
         y: y,
         w: width,
