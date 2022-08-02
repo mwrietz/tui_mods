@@ -2,8 +2,6 @@ use colored::Colorize;
 use crate::tui_gen::cmove;
 
 pub struct Frame<'a> {
-    //pub title: String,
-    //pub title_color: String,
     pub title: &'a str,
     pub title_color: &'a str,
     pub frame_color: &'a str,
@@ -25,7 +23,6 @@ impl Frame<'_> {
         }
     }
     pub fn display(&self) {
-        //let ul = "╭".white();
         let ul = "╭".color(self.frame_color);
         let ur = "╮".color(self.frame_color);
         let ll = "╰".color(self.frame_color);
@@ -69,7 +66,6 @@ impl Frame<'_> {
 
 pub struct MsgFrame<'a> {
     pub frame: Frame<'a>,
-    //pub msg: Vec<String>,
     pub msg: Vec<&'a str>,
 }
 
