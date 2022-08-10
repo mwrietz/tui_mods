@@ -1,5 +1,5 @@
 use colored::Colorize;
-use std::io::{Write};
+use std::io::Write;
 
 use crate::tui_gen::cmove;
 use crate::tui_gen::tsize;
@@ -9,8 +9,8 @@ use crate::tui_frm::Frame;
 #[allow(dead_code)]
 pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &str) -> String {
     let (term_width, term_height) = tsize();
-    let x = (term_width - width)/2;
-    let y = (term_height - height)/2;
+    let x = (term_width - width) / 2;
+    let y = (term_height - height) / 2;
 
     let frm = Frame {
         title,
@@ -24,9 +24,9 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
     frm.display();
 
     // print title and get string
-    cmove(x+2, y);
+    cmove(x + 2, y);
     print!(" {} ", title.red());
-    cmove(x+3, y+2);
+    cmove(x + 3, y + 2);
     let s = get_string(prompt);
 
     s

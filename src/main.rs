@@ -6,15 +6,22 @@ mod tui_menu;
 fn main() {
     tui_gen::cls();
 
-    let q = tui_inp::get_float_default("test", 5.4);
+    let q = tui_inp::get_float_default("test", 32.234);
     println!("q = {}", q);
     let f = tui_inp::get_float_default("enter float: ", 10.2);
     println!("f = {}", f);
 
     let _mystr = tui_inp::dialog_box_get_string(40, 5, "String Test", "Enter String: ");
 
-    let menu_items = vec!["Item one", "Item two", "Item three"];
+    let menu_items = vec![
+        "Item one",
+        "Item two",
+        "Item three",
+        "Item four",
+        "Item five",
+    ];
     tui_menu::menu("Test Inputs", &menu_items);
+
 
     let i = tui_inp::get_int("Enter int: ");
     println!("{}", i);
@@ -65,5 +72,21 @@ fn main() {
 
     mfrm.frame.clear();
     mfrm.display_msg();
-    tui_gen::cmove(0,22);
+    tui_gen::cmove(0, 22);
+
+    tui_gen::cls();
+    let menu_items = vec![
+        ("a", "Add"),
+        ("r", "Remove"),
+        ("e", "Edit"),
+        ("d", "Details"),
+        ("s", "Summary"),
+        ("m", "Menu"),
+        ("q", "Quit")
+    ];
+
+    let val = tui_menu::menu_horiz(&menu_items);
+    tui_gen::cls();
+    println!("{}", val);
+
 }
