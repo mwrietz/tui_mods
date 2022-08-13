@@ -6,6 +6,8 @@ mod tui_menu;
 fn main() {
     tui_gen::cls();
 
+    println!("{}", tui_gen::get_prog_name());
+
     let q = tui_inp::get_float_default("test", 32.234);
     println!("q = {}", q);
     let f = tui_inp::get_float_default("enter float: ", 10.2);
@@ -88,5 +90,4 @@ fn main() {
     let val = tui_menu::menu_horiz(&menu_items);
     tui_gen::cls();
     println!("{}", val);
-
 }

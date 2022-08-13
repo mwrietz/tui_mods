@@ -2,6 +2,7 @@ use colored::Colorize;
 use crossterm::{cursor, execute};
 use getch::Getch;
 use std::io::{stdout, Write};
+use std::env;
 
 #[allow(dead_code)]
 pub fn cls() {
@@ -11,6 +12,17 @@ pub fn cls() {
 #[allow(dead_code)]
 pub fn cmove(x: usize, y: usize) {
     execute!(stdout(), cursor::MoveTo(x as u16, y as u16)).unwrap();
+}
+
+#[allow(dead_code)]
+pub fn get_prog_name() -> String {
+    let prog_name = env::current_exe()
+        .expect("Can't get the exec path")
+        .file_name()
+        .expect("Can't get the exec name")
+        .to_string_lossy()
+        .into_owned();
+    prog_name
 }
 
 #[allow(dead_code)]

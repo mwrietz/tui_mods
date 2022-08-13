@@ -35,8 +35,6 @@ pub fn menu(menu_title: &str, items: &Vec<&str>) -> u8 {
     _a - 48
 }
 
-
-
 // menu_h - example use
 //
 //    let menu_items = vec![
