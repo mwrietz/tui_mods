@@ -6,15 +6,11 @@ use getch::Getch;
 use std::io::{stdout, Write};
 use std::env;
 
-/*
-
 //
-// usage:
-// let (_width, height) = tui_gen::tsize();
+// TermStat usage:
 // let mut termstat = TermStat::default();
-// termstat.height = height;
 //
-*/
+
 pub struct TermStat {
     pub line_count: usize,
     pub width: usize,
