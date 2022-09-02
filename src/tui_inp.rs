@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use colored::Colorize;
 use std::io::Write;
 
@@ -6,7 +8,6 @@ use crate::tui_gen::tsize;
 
 use crate::tui_frm::Frame;
 
-#[allow(dead_code)]
 pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &str) -> String {
     let (term_width, term_height) = tsize();
     let x = (term_width - width) / 2;
@@ -32,7 +33,6 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
     s
 }
 
-#[allow(dead_code)]
 pub fn get_int(prompt: &str) -> i32 {
     loop {
         let mut buffer = String::new();
@@ -52,7 +52,6 @@ pub fn get_int(prompt: &str) -> i32 {
     }
 }
 
-#[allow(dead_code)]
 pub fn get_float(prompt: &str) -> f64 {
     loop {
         let mut buffer = String::new();
@@ -72,7 +71,6 @@ pub fn get_float(prompt: &str) -> f64 {
     }
 }
 
-#[allow(dead_code)]
 pub fn get_float_default(prompt: &str, default: f64) -> f64 {
     loop {
         let mut buffer = String::new();
@@ -97,7 +95,6 @@ pub fn get_float_default(prompt: &str, default: f64) -> f64 {
     }
 }
 
-#[allow(dead_code)]
 pub fn get_string(prompt: &str) -> String {
     let mut buffer = String::new();
     print!("{}", prompt);
@@ -114,7 +111,6 @@ pub fn get_string(prompt: &str) -> String {
     return buffer;
 }
 
-#[allow(dead_code)]
 pub fn get_string_default(prompt: &str, default: &str) -> String {
     let mut buffer = String::new();
     print!("{} [{}]: ", prompt, default);

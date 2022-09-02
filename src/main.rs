@@ -4,14 +4,21 @@ mod tui_inp;
 mod tui_menu;
 
 fn main() {
+    let mut termstat = tui_gen::TermStat::default();
+
     tui_gen::cls();
 
     println!("{}", tui_gen::get_prog_name());
+    termstat.line_check();
 
     let q = tui_inp::get_float_default("test", 32.234);
+    termstat.line_check();
     println!("q = {}", q);
+    termstat.line_check();
     let f = tui_inp::get_float_default("enter float: ", 10.2);
+    termstat.line_check();
     println!("f = {}", f);
+    termstat.line_check();
 
     let _mystr = tui_inp::dialog_box_get_string(40, 5, "String Test", "Enter String: ");
 

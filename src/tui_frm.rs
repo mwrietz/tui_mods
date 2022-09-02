@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use crate::tui_gen::cmove;
 use colored::Colorize;
 
@@ -12,7 +14,6 @@ pub struct Frame<'a> {
 }
 
 impl Frame<'_> {
-    #[allow(dead_code)]
     pub fn clear(&self) {
         // draw middle
         for i in 0..(self.h - 1) {
