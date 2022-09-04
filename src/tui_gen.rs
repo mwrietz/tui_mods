@@ -6,41 +6,6 @@ use getch::Getch;
 use std::io::{stdout, Write};
 use std::env;
 
-//
-// TermStat usage:
-// let mut termstat = TermStat::default();
-//
-
-pub struct TermStat {
-    pub line_count: usize,
-    pub width: usize,
-    pub height: usize,
-}
-
-impl Default for TermStat {
-    fn default() -> TermStat {
-        let (w, h) = tsize();
-        TermStat {
-            line_count: 0,
-            width: w,
-            height: h,
-        }
-    }
-}
-
-impl TermStat {
-    pub fn line_check(&mut self) {
-        self.line_count += 1;
-        if self.line_count > (self.height - 5) {
-            pause();
-            self.line_count = 0;
-            cls();
-            cmove(0, 0);
-        }
-    }
-}
-
-
 pub fn cls() {
     std::process::Command::new("clear").status().unwrap();
 }
@@ -114,6 +79,40 @@ pub fn splash_screen(line1: &str, line2: &str) {
     cls();
 
     execute!(stdout(), cursor::Show).unwrap();
+}
+
+//
+// TermStat usage:
+// let mut termstat = TermStat::default();
+//
+
+pub struct TermStat {
+    pub line_count: usize,
+    pub width: usize,
+    pub height: usize,
+}
+
+impl Default for TermStat {
+    fn default() -> TermStat {
+        let (w, h) = tsize();
+        TermStat {
+            line_count: 0,
+            width: w,
+            height: h,
+        }
+    }
+}
+
+impl TermStat {
+    pub fn line_check(&mut self) {
+        self.line_count += 1;
+        if self.line_count > (self.height - 5) {
+            pause();
+            self.line_count = 0;
+            cls();
+            cmove(0, 0);
+        }
+    }
 }
 
 pub fn timestamp() -> String {
