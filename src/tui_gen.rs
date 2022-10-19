@@ -90,22 +90,27 @@ pub struct TermStat {
     pub line_count: usize,
     pub width: usize,
     pub height: usize,
+    pub xpos: usize,
+    pub ypos: usize,
 }
 
 impl Default for TermStat {
     fn default() -> TermStat {
         let (w, h) = tsize();
+        let (x, y) = tpos();
         TermStat {
             line_count: 0,
             width: w,
             height: h,
+            xpos: x,
+            ypos: y,
         }
     }
 }
 
 impl TermStat {
     pub fn line_check(&mut self) {
-        let (_x, y) = tpos();
+        let (x, y) = tpos();
         if y > (self.height - 5) {
             pause();
             cls();
