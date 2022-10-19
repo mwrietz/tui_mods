@@ -97,4 +97,8 @@ fn main() {
     let val = tui_menu::menu_horiz(&menu_items);
     tui_gen::cls();
     println!("{}", val);
+
+
+
+
 }

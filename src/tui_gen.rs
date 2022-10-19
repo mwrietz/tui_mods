@@ -105,10 +105,9 @@ impl Default for TermStat {
 
 impl TermStat {
     pub fn line_check(&mut self) {
-        self.line_count += 1;
-        if self.line_count > (self.height - 5) {
+        let (_x, y) = tpos();
+        if y > (self.height - 5) {
             pause();
-            self.line_count = 0;
             cls();
             cmove(0, 0);
         }
@@ -118,6 +117,15 @@ impl TermStat {
 pub fn timestamp() -> String {
     let now = chrono::Local::now();
     return now.to_string();
+}
+
+pub fn tpos() -> (usize, usize) {
+    let pos = crossterm::cursor::position();
+    let (x, y) = match pos {
+        Ok((x, y)) => (x, y),
+        Err(error) => panic!("tpos error: {:?}", error),
+    };
+    (x as usize, y as usize)
 }
 
 pub fn tsize() -> (usize, usize) {
