@@ -2,6 +2,7 @@
 
 use colored::Colorize;
 use std::io::Write;
+use std::str::FromStr;
 
 use crate::tui_gen::cmove;
 use crate::tui_gen::tsize;
@@ -31,6 +32,26 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
     let s = get_string(prompt);
 
     s
+}
+
+pub fn get_val<T: FromStr>(prompt: &str) -> T {
+    loop {
+        let mut buffer = String::new();
+        print!("{}", prompt);
+
+        std::io::stdout().flush().unwrap();
+
+        std::io::stdin()
+            .read_line(&mut buffer)
+            .expect("Failed to read line");
+
+        let val: T = match buffer.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+
+        return val;
+    }
 }
 
 pub fn get_int(prompt: &str) -> i32 {

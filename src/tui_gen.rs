@@ -110,7 +110,7 @@ impl Default for TermStat {
 
 impl TermStat {
     pub fn line_check(&mut self) {
-        let (x, y) = tpos();
+        let (_x, y) = tpos();
         if y > (self.height - 5) {
             pause();
             cls();

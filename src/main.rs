@@ -31,6 +31,11 @@ fn main() {
     ];
     tui_menu::menu("Test Inputs", &menu_items);
 
+    let iv: i32 = tui_inp::get_val("Enter int value: ");
+    println!("{}", iv);
+
+    let fv: f64 = tui_inp::get_val("Enter float value: ");
+    println!("{}", fv);
 
     let i = tui_inp::get_int("Enter int: ");
     println!("{}", i);
