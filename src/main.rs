@@ -11,6 +11,21 @@ fn main() {
     println!("{}", tui_gen::get_prog_name());
     termstat.line_check();
 
+    let iv: i32 = tui_inp::get_val("Enter int value: ");
+    println!("{}", iv);
+
+    let fv: f64 = tui_inp::get_val("Enter float value: ");
+    println!("{}", fv);
+
+    let iv: i32 = tui_inp::get_val_default("Enter int value: ", 3);
+    println!("{}", iv);
+
+    let fv: f64 = tui_inp::get_val_default("Enter float value: ", 43.234);
+    println!("{}", fv);
+
+
+
+    /*
     let q = tui_inp::get_float_default("test", 32.234);
     termstat.line_check();
     println!("q = {}", q);
@@ -30,12 +45,6 @@ fn main() {
         "Item five",
     ];
     tui_menu::menu("Test Inputs", &menu_items);
-
-    let iv: i32 = tui_inp::get_val("Enter int value: ");
-    println!("{}", iv);
-
-    let fv: f64 = tui_inp::get_val("Enter float value: ");
-    println!("{}", fv);
 
     let i = tui_inp::get_int("Enter int: ");
     println!("{}", i);
@@ -88,6 +97,7 @@ fn main() {
     mfrm.display_msg();
     tui_gen::cmove(0, 22);
 
+    // menu
     tui_gen::cls();
     let menu_items = vec![
         ("a", "Add"),
@@ -104,6 +114,7 @@ fn main() {
     println!("{}", val);
 
 
+    */
 
 
 }
