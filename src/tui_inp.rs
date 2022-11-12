@@ -64,7 +64,8 @@ pub fn get_string(prompt: &str) -> String {
     while buffer.ends_with('\n') || buffer.ends_with('\r') {
         buffer.pop();
     }
-    return buffer;
+    //return buffer;
+    buffer
 }
 
 pub fn get_string_default(prompt: &str, default: &str) -> String {
