@@ -77,7 +77,9 @@ impl Frame<'_> {
             // print title
             cmove(self.x + 2, self.y);
             //print!(" {} ", self.title.color(self.title_color));
+            print!(" ");
             print_color(self.title, self.title_color);
+            print!(" ");
         }
     }
 }
