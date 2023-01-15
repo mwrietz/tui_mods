@@ -1,10 +1,27 @@
 #![allow(dead_code)]
 
-use colored::Colorize;
-use crossterm::{cursor, execute};
+//use colored::Colorize;
+use crossterm::{
+    cursor, execute,
+    style::{Color, Print, ResetColor, SetForegroundColor, Stylize},
+};
 use getch::Getch;
 use std::io::{stdout, Write};
 use std::env;
+
+fn clr(c: &str) -> Color {
+    let c_upper: &str = &c.to_uppercase();
+    match c_upper {
+        "RED" => Color::Red,
+        "BLUE" => Color::Blue,
+        "CYAN" => Color::Cyan,
+        "GREEN" => Color::Green,
+        "GREY" => Color::Grey,
+        "YELLOW" => Color::Yellow,
+        "MAGENTA" => Color::Magenta,
+        _ => Color::White,
+    }
+}
 
 pub fn cls() {
     std::process::Command::new("clear").status().unwrap();
@@ -26,7 +43,8 @@ pub fn get_prog_name() -> String {
 
 pub fn horiz_line(color: &str) {
     for _i in 0..80 {
-        print!("{}", "─".color(color).bold());
+        //print!("{}", "─".color(color).bold());
+        print_color_bold("─", color);
     }
     println!("");
 }
@@ -34,10 +52,12 @@ pub fn horiz_line(color: &str) {
 pub fn pause() {
     let (w, h) = tsize();
     let clear_message = "                            ";
-    let message = "Press any key to continue...".blue();
+    //let message = "Press any key to continue...".blue();
+    let message = "Press any key to continue...";
     let message_len: usize = message.len();
     cmove((w - message_len) / 2, h - 2);
-    print!("{}", message);
+    //print!("{}", message);
+    print_color(message, "BLUE");
     std::io::stdout().flush().unwrap();
     let g = Getch::new();
     let _keypress = g.getch().unwrap();
@@ -45,11 +65,30 @@ pub fn pause() {
     print!("{}", clear_message);
 }
 
+pub fn print_color(my_str: &str, color: &str) {
+    execute!(
+        stdout(),
+        SetForegroundColor(clr(color)),
+        Print(my_str),
+        ResetColor
+    ).expect("print_color error");
+}
+
+pub fn print_color_bold(my_str: &str, color: &str) {
+    execute!(
+        stdout(),
+        SetForegroundColor(clr(color)),
+        Print(my_str.bold()),
+        ResetColor
+    ).expect("print_color_bold error");
+}
+
 pub fn print_title(title_string: &str, color: &str) {
     println!("");
     for c in title_string.chars() {
         print!("{}", " ");
-        print!("{}", c.to_string().color(color).bold());
+        //print!("{}", c.to_string().color(color).bold());
+        print_color_bold(&c.to_string(), color);
     }
     println!("");
     horiz_line(color);
@@ -64,7 +103,8 @@ pub fn splash_screen(line1: &str, line2: &str) {
 
     let line1_length: usize = line1.len();
     cmove(width / 2 - line1_length / 2, height / 2 - 1);
-    println!("{}", line1.bold());
+    //println!("{}", line1.bold());
+    print_color_bold(line1, "WHITE");
 
     let line2_length: usize = line2.len();
     cmove(width / 2 - line2_length / 2, height / 2 + 1);

@@ -23,7 +23,32 @@ fn main() {
     let fv: f64 = tui_inp::get_val_default("Enter float value: ", 43.234);
     println!("{}", fv);
 
+    let sv: String = tui_inp::get_val("Enter string: ");
+    println!("{}", sv);
 
+    let mut mfrm = tui_frm::MsgFrame {
+        frame: tui_frm::Frame {
+            title: "temp",
+            title_color: "blue",
+            frame_color: "yellow",
+            x: 5,
+            y: 25,
+            w: 40,
+            h: 5,
+        },
+        msg: vec![
+            "line one",
+            "line two",
+            "line three",
+            "line four",
+            "line five",
+        ],
+    };
+    mfrm.frame.display();
+
+    mfrm.frame.clear();
+    mfrm.display_msg();
+    tui_gen::pause();
 
     /*
     let q = tui_inp::get_float_default("test", 32.234);

@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use colored::Colorize;
+//use colored::Colorize;
 use crossterm::{cursor, execute};
 use getch::Getch;
 use std::io;
@@ -9,6 +9,7 @@ use std::io::{stdout, Write};
 use crate::tui_gen::cmove;
 use crate::tui_gen::horiz_line;
 use crate::tui_gen::tsize;
+use crate::tui_gen::print_color;
 
 pub fn menu(menu_title: &str, items: &Vec<&str>) -> u8 {
     println!("{}", menu_title);
@@ -57,7 +58,9 @@ pub fn menu_horiz(items: &Vec<(&str, &str)>) -> char {
 
     horiz_line("blue");
     for item in items.iter() {
-        print!("{:>4}:{}", item.0.green(), item.1);
+        //print!("{:>4}:{}", item.0.green(), item.1);
+        let buffer = format!("{:>4}:{}", item.0, item.1);
+        print_color(&buffer, "GREEN");
     }
     execute!(stdout(), cursor::Hide).unwrap();
     io::stdout().flush().unwrap();
