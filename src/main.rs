@@ -26,7 +26,7 @@ fn main() {
     let sv: String = tui_inp::get_val("Enter string: ");
     println!("{}", sv);
 
-    let mut mfrm = tui_frm::MsgFrame {
+    let mfrm = tui_frm::MsgFrame {
         frame: tui_frm::Frame {
             title: "temp",
             title_color: "blue",

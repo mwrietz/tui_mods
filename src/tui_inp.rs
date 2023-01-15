@@ -1,10 +1,11 @@
 #![allow(dead_code)]
 
-use colored::Colorize;
+//use colored::Colorize;
 use std::io::Write;
 
 use crate::tui_gen::cmove;
 use crate::tui_gen::tsize;
+use crate::tui_gen::print_color;
 
 use crate::tui_frm::Frame;
 
@@ -107,7 +108,10 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
 
     // print title and get string
     cmove(x + 2, y);
-    print!(" {} ", title.red());
+    //print!(" {} ", title.red());
+    print!(" ");
+    print_color(title, "RED");
+    print!(" ");
     cmove(x + 3, y + 2);
     let s = get_string(prompt);
 
