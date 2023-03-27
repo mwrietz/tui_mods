@@ -13,12 +13,18 @@ fn clr(c: &str) -> Color {
     let c_upper: &str = &c.to_uppercase();
     match c_upper {
         "RED" => Color::Red,
+        "DARKRED" => Color::DarkRed,
         "BLUE" => Color::Blue,
+        "DARKBLUE" => Color::DarkBlue,
         "CYAN" => Color::Cyan,
+        "DARKCYAN" => Color::DarkCyan,
         "GREEN" => Color::Green,
+        "DARKGREEN" => Color::DarkGreen,
         "GREY" => Color::Grey,
         "YELLOW" => Color::Yellow,
+        "DARKYELLOW" => Color::DarkYellow,
         "MAGENTA" => Color::Magenta,
+        "DARKMAGENTA" => Color::DarkMagenta,
         _ => Color::White,
     }
 }
@@ -57,7 +63,7 @@ pub fn pause() {
     let message_len: usize = message.len();
     cmove((w - message_len) / 2, h - 2);
     //print!("{}", message);
-    print_color(message, "BLUE");
+    print_color(message, "DARKBLUE");
     std::io::stdout().flush().unwrap();
     let g = Getch::new();
     let _keypress = g.getch().unwrap();

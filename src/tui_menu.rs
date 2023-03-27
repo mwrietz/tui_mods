@@ -59,8 +59,10 @@ pub fn menu_horiz(items: &Vec<(&str, &str)>) -> char {
     horiz_line("blue");
     for item in items.iter() {
         //print!("{:>4}:{}", item.0.green(), item.1);
-        let buffer = format!("{:>4}:{}", item.0, item.1);
-        print_color(&buffer, "GREEN");
+        let buffer = format!("{:>4}", item.0);
+        print_color(&buffer, "DARKGREEN");
+        let buffer = format!(":{}", item.1);
+        print_color(&buffer, "WHITE");
     }
     execute!(stdout(), cursor::Hide).unwrap();
     io::stdout().flush().unwrap();
