@@ -1,9 +1,10 @@
 #![allow(dead_code)]
 
+use crossterm::style::Color;
 //use colored::Colorize;
 use std::io::Write;
 
-use crate::tui_gen::cmove;
+use crate::tui_gen::cursor_move;
 use crate::tui_gen::tsize;
 use crate::tui_gen::print_color;
 
@@ -97,8 +98,10 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
 
     let frm = Frame {
         title,
-        title_color: "white",
-        frame_color: "white",
+        //title_color: "white",
+        title_color: Color::White,
+        //frame_color: "white",
+        frame_color: Color::White,
         x,
         y,
         w: width,
@@ -107,12 +110,12 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
     frm.display();
 
     // print title and get string
-    cmove(x + 2, y);
+    cursor_move(x + 2, y);
     //print!(" {} ", title.red());
     print!(" ");
-    print_color(title, "RED");
+    print_color(title, Color::Red);
     print!(" ");
-    cmove(x + 3, y + 2);
+    cursor_move(x + 3, y + 2);
     let s = get_string(prompt);
 
     s

@@ -1,3 +1,4 @@
+use crossterm::style::Color;
 mod tui_frm;
 mod tui_gen;
 mod tui_inp;
@@ -29,8 +30,8 @@ fn main() {
     let mfrm = tui_frm::MsgFrame {
         frame: tui_frm::Frame {
             title: "temp",
-            title_color: "blue",
-            frame_color: "yellow",
+            title_color: Color::Blue,
+            frame_color: Color::Yellow,
             x: 5,
             y: 25,
             w: 40,
