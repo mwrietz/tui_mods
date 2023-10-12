@@ -9,7 +9,9 @@ fn main() {
 
     tui_gen::cls();
 
-    println!("{}", tui_gen::get_prog_name());
+    tui_gen::print_page_header("TITLE");
+
+    //println!("{}", tui_gen::get_prog_name());
     termstat.line_check();
 
     let iv: i32 = tui_inp::get_val("Enter int value: ");
