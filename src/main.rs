@@ -51,6 +51,22 @@ fn main() {
     mfrm.display_msg();
     tui_gen::pause();
 
+    // menu
+    tui_gen::cls();
+    let menu_items = vec![
+        ("a", "Add"),
+        ("r", "Remove"),
+        ("e", "Edit"),
+        ("d", "Details"),
+        ("s", "Summary"),
+        ("m", "Menu"),
+        ("q", "Quit")
+    ];
+
+    let val = tui_menu::menu_horiz_neo(&menu_items);
+    tui_gen::cls();
+    println!("{}", val);
+
     /*
     let q = tui_inp::get_float_default("test", 32.234);
     termstat.line_check();
