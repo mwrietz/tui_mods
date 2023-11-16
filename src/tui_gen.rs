@@ -33,10 +33,11 @@ pub fn get_prog_name() -> String {
 
 pub fn horiz_line(color: Color) {
     let (width, _) = tsize();
-    for _i in 0..width as usize {
+    //for _i in 0..width as usize {
+    for _i in 0..width {
         print_color_bold("─", color);
     }
-    println!("");
+    println!();
 }
 
 pub fn pause() {
@@ -75,18 +76,33 @@ pub fn print_color_bold(my_str: &str, color: Color) {
 
 pub fn print_page_header(title: &str) {
     //let title = "DEFINITIVE BEER DATABASE";
-    print_title(&title, Color::DarkBlue);
+    //print_title(&title, Color::DarkBlue);
+    print_title(title, Color::DarkBlue);
 
     // print version right justified
-    let (w, _h) = tsize(); 
+    let (w, _h) = tsize();
     let prog_name = get_prog_name();
     let version = format!("v{}", env!("CARGO_PKG_VERSION"));
     let offset = prog_name.len() + version.len() + 2;
     cursor_move(w - offset, 1);
 
-    print_color(prog_name.as_str(), Color::Rgb{r:255, g:135, b:0});
+    print_color(
+        prog_name.as_str(),
+        Color::Rgb {
+            r: 255,
+            g: 135,
+            b: 0,
+        },
+    );
     print_color(" ", Color::Black);
-    print_color(version.as_str(), Color::Rgb{r:255, g:135, b:0});
+    print_color(
+        version.as_str(),
+        Color::Rgb {
+            r: 255,
+            g: 135,
+            b: 0,
+        },
+    );
     // print_color(
     //     format!(" v{}", env!("CARGO_PKG_VERSION")).as_str(),
     //    Color::Rgb{r:255, g:135, b:0},
@@ -98,14 +114,14 @@ pub fn print_page_header(title: &str) {
 }
 
 pub fn print_title(title_string: &str, color: Color) {
-    println!("");
+    println!();
     for c in title_string.chars() {
-        print!("{}", " ");
+        print!(" ");
         print_color_bold(&c.to_string(), color);
     }
-    println!("");
+    println!();
     horiz_line(color);
-    println!("");
+    println!();
 }
 
 pub fn splash_screen(line1: &str, line2: &str) {
@@ -171,7 +187,7 @@ impl TermStat {
 
 pub fn timestamp() -> String {
     let now = chrono::Local::now();
-    return now.to_string();
+    now.to_string()
 }
 
 pub fn tpos() -> (usize, usize) {
@@ -191,4 +207,3 @@ pub fn tsize() -> (usize, usize) {
     };
     (w as usize, h as usize)
 }
-

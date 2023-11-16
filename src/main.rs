@@ -53,8 +53,10 @@ fn main() {
     mfrm.display_msg();
     tui_gen::pause();
 
-    // menu
     tui_gen::cls();
+    tui_gen::print_page_header("TITLE");
+
+    // menu
     let menu_items = vec![
         ("a", "Add"),
         ("r", "Remove"),
@@ -62,7 +64,7 @@ fn main() {
         ("d", "Details"),
         ("s", "Summary"),
         ("m", "Menu"),
-        ("q", "Quit")
+        ("q", "Quit"),
     ];
 
     let val = tui_menu::menu_horiz_neo(&menu_items);
@@ -159,6 +161,4 @@ fn main() {
 
 
     */
-
-
 }
