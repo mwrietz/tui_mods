@@ -9,11 +9,6 @@ use getch::Getch;
 use std::env;
 use std::io::{stdout, Write};
 
-pub struct MsgLine {
-    pub msg: String,
-    pub color: Color,
-}
-
 pub fn cls() {
     std::process::Command::new("clear").status().unwrap();
 }
@@ -38,6 +33,7 @@ pub fn get_prog_name() -> String {
 
 pub fn horiz_line(color: Color) {
     let (width, _) = tsize();
+    //for _i in 0..width as usize {
     for _i in 0..width {
         print_color_bold("─", color);
     }
@@ -78,6 +74,45 @@ pub fn print_color_bold(my_str: &str, color: Color) {
     .expect("print_color_bold error");
 }
 
+pub fn print_page_header(title: &str) {
+    //let title = "DEFINITIVE BEER DATABASE";
+    //print_title(&title, Color::DarkBlue);
+    print_title(title, Color::DarkBlue);
+
+    // print version right justified
+    let (w, _h) = tsize();
+    let prog_name = get_prog_name();
+    let version = format!("v{}", env!("CARGO_PKG_VERSION"));
+    let offset = prog_name.len() + version.len() + 2;
+    cursor_move(w - offset, 1);
+
+    print_color(
+        prog_name.as_str(),
+        Color::Rgb {
+            r: 255,
+            g: 135,
+            b: 0,
+        },
+    );
+    print_color(" ", Color::Black);
+    print_color(
+        version.as_str(),
+        Color::Rgb {
+            r: 255,
+            g: 135,
+            b: 0,
+        },
+    );
+    // print_color(
+    //     format!(" v{}", env!("CARGO_PKG_VERSION")).as_str(),
+    //    Color::Rgb{r:255, g:135, b:0},
+    // );
+    //cursor_move(0, 3);
+    println!();
+    horiz_line(Color::DarkBlue);
+    cursor_move(0, 4);
+}
+
 pub fn print_title(title_string: &str, color: Color) {
     println!();
     for c in title_string.chars() {
@@ -89,73 +124,17 @@ pub fn print_title(title_string: &str, color: Color) {
     println!();
 }
 
-// *****************************
-//
-// *** splash() example call ***
-//
-// use crossterm::style::Color;
-// mod tui_gen;
-// use tui_gen::MsgLine;
-//
-//
-//
-// let orange = Color::Rgb { r: 255, g: 135, b: 0 };
-//
-// let mut msg: Vec<MsgLine> = vec!();
-// msg.push( MsgLine{ msg: "P R O G R A M   N A M E".to_string(), color: Color::DarkBlue} );
-// msg.push( MsgLine{ msg: "".to_string(), color: Color::White} );
-// msg.push( MsgLine{ msg: "v0.1.3".to_string(), color: orange } );
-//
-// tui_gen::splash(msg);
-//
-// *****************************
-
-pub fn splash(msglines: Vec<MsgLine>) {
-    cls();
-    let (width, height) = tsize();
-    let num_lines = msglines.len();
-
-    let mut line_pos = height/2 - num_lines/2;
-
-    for line in msglines {
-        let line_len = line.msg.len();
-        cursor_move(width/2 - line_len/2, line_pos);
-        print_color_bold(&line.msg, line.color);
-        line_pos += 1;
-    }
-
-    execute!(stdout(), cursor::Hide).unwrap();
-
-    // pause for splash screen
-    //let one_sec = std::time::Duration::from_millis(1000);
-    let dur = std::time::Duration::new(2, 0);
-    std::thread::sleep(dur);
-    cls();
-
-    execute!(stdout(), cursor::Show).unwrap();
-}
-
-
 pub fn splash_screen(line1: &str, line2: &str) {
     cls();
     let (width, height) = tsize();
 
     let line1_length: usize = line1.len();
     cursor_move(width / 2 - line1_length / 2, height / 2 - 1);
-    //print_color_bold(line1, Color::White);
-    print_color_bold(line1, Color::DarkBlue);
+    print_color_bold(line1, Color::White);
 
     let line2_length: usize = line2.len();
     cursor_move(width / 2 - line2_length / 2, height / 2 + 1);
-    //println!("{}", line2);
-    print_color_bold(
-        line2,
-        Color::Rgb {
-            r: 255,
-            g: 135,
-            b: 0,
-        },
-    );
+    println!("{}", line2);
 
     execute!(stdout(), cursor::Hide).unwrap();
 
