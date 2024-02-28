@@ -129,7 +129,7 @@ pub fn menu_horiz_neo(items: &[(&str, &str)]) -> char {
                 break;
             }
         }
-        if flag { 
+        if flag {
             break;
         }
     }

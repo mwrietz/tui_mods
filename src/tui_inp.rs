@@ -120,7 +120,6 @@ pub fn dialog_box_get_string(width: usize, height: usize, title: &str, prompt: &
     //
     // s
     get_string(prompt)
-    
 }
 
 //

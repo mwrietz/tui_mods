@@ -5,7 +5,7 @@ mod tui_inp;
 mod tui_menu;
 
 fn main() {
-    let mut termstat = tui_gen::TermStat::default();
+    let termstat = tui_gen::TermStat::default();
 
     tui_gen::splash_screen("Line One", "Line Two");
 

@@ -90,18 +90,17 @@ pub fn print_title(title_string: &str, color: Color) {
 }
 
 // *****************************
-//
-// *** splash() example call ***
+// splash() usage:
 //
 // use crossterm::style::Color;
 // mod tui_gen;
 // use tui_gen::MsgLine;
 //
-//
+// -----------------------------
 //
 // let orange = Color::Rgb { r: 255, g: 135, b: 0 };
 //
-// let mut msg: Vec<MsgLine> = vec!();
+// let mut msg: Vec<MsgLine> = vec![];
 // msg.push( MsgLine{ msg: "P R O G R A M   N A M E".to_string(), color: Color::DarkBlue} );
 // msg.push( MsgLine{ msg: "".to_string(), color: Color::White} );
 // msg.push( MsgLine{ msg: "v0.1.3".to_string(), color: orange } );
@@ -115,11 +114,11 @@ pub fn splash(msglines: Vec<MsgLine>) {
     let (width, height) = tsize();
     let num_lines = msglines.len();
 
-    let mut line_pos = height/2 - num_lines/2;
+    let mut line_pos = height / 2 - num_lines / 2;
 
     for line in msglines {
         let line_len = line.msg.len();
-        cursor_move(width/2 - line_len/2, line_pos);
+        cursor_move(width / 2 - line_len / 2, line_pos);
         print_color_bold(&line.msg, line.color);
         line_pos += 1;
     }
@@ -127,7 +126,6 @@ pub fn splash(msglines: Vec<MsgLine>) {
     execute!(stdout(), cursor::Hide).unwrap();
 
     // pause for splash screen
-    //let one_sec = std::time::Duration::from_millis(1000);
     let dur = std::time::Duration::new(2, 0);
     std::thread::sleep(dur);
     cls();
@@ -135,19 +133,16 @@ pub fn splash(msglines: Vec<MsgLine>) {
     execute!(stdout(), cursor::Show).unwrap();
 }
 
-
 pub fn splash_screen(line1: &str, line2: &str) {
     cls();
     let (width, height) = tsize();
 
     let line1_length: usize = line1.len();
     cursor_move(width / 2 - line1_length / 2, height / 2 - 1);
-    //print_color_bold(line1, Color::White);
     print_color_bold(line1, Color::DarkBlue);
 
     let line2_length: usize = line2.len();
     cursor_move(width / 2 - line2_length / 2, height / 2 + 1);
-    //println!("{}", line2);
     print_color_bold(
         line2,
         Color::Rgb {
@@ -160,7 +155,6 @@ pub fn splash_screen(line1: &str, line2: &str) {
     execute!(stdout(), cursor::Hide).unwrap();
 
     // pause for splash screen
-    //let one_sec = std::time::Duration::from_millis(1000);
     let dur = std::time::Duration::new(2, 0);
     std::thread::sleep(dur);
     cls();
