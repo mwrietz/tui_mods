@@ -89,6 +89,10 @@ pub fn print_title(title_string: &str, color: Color) {
     println!();
 }
 
+pub fn show_cursor() {
+    execute!(stdout(), cursor::Show).unwrap();
+}
+
 // *****************************
 // splash() usage:
 //
