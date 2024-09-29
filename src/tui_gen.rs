@@ -1,12 +1,17 @@
 #![allow(dead_code)]
 
+//use crate::io;
 use crossterm::{
     cursor, execute,
     style::{Color, Print, ResetColor, SetForegroundColor, Stylize},
-    terminal::{Clear, ClearType},
+    terminal::{
+        disable_raw_mode, enable_raw_mode, Clear, ClearType, EnterAlternateScreen,
+        LeaveAlternateScreen,
+    },
 };
 use getch::Getch;
 use std::env;
+use std::io;
 use std::io::{stdout, Write};
 
 pub struct MsgLine {
@@ -164,6 +169,20 @@ pub fn splash_screen(line1: &str, line2: &str) {
     cls();
 
     execute!(stdout(), cursor::Show).unwrap();
+}
+
+pub fn terminal_state_save() -> Result<(), io::Error> {
+    enable_raw_mode()?;
+    execute!(io::stdout(), EnterAlternateScreen)?;
+
+    Ok(())
+}
+
+pub fn terminal_state_restore() -> Result<(), io::Error> {
+    disable_raw_mode()?;
+    execute!(io::stdout(), LeaveAlternateScreen)?;
+
+    Ok(())
 }
 
 //
